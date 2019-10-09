@@ -8,6 +8,7 @@
 
 import React from 'react';
 import login from './screens/login';
+import ForYou from './src/ForYou'
 
 
-export default login;
+export default ForYou;
