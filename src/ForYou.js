@@ -3,7 +3,7 @@ import { View, StyleSheet, Image, Dimensions, ScrollView} from 'react-native';
 import { Text, Button, Content, Input, Item, Container, Header, Icon, Footer, FooterTab, Row } from 'native-base';
 
 import Carousel from 'react-native-banner-carousel';
-import { TouchableHighlight } from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const BannerWidth = Dimensions.get('window').width;
 const BannerHeight = 180;
@@ -66,12 +66,12 @@ export default class ForYou extends Component {
                         <ScrollView showsHorizontalScrollIndicator={false} horizontal= {true} >
                             {this.state.banner.map((image) =>  (
                             <View key= {image.picture}>
-                              <TouchableHighlight onPress={() => this.props.navigation.navigate
+                              <TouchableOpacity onPress={() => this.props.navigation.navigate
                                 ('DetailWebtoonScreen', {gambar:image.picture})} >
                                 <Image style={style.imageFavorite}
                                 source= {{ uri: image.picture}}
                                 />
-                              </TouchableHighlight>                                
+                              </TouchableOpacity>                                
                                 <Text style={style.textFav}>{image.title} </Text>
                             </View>
                             ))}

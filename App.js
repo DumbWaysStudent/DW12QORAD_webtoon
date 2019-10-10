@@ -10,12 +10,12 @@ import React from 'react';
 import login from './screens/login';
 import ForYou from './src/ForYou';
 import DetailWebtoon from './src/DetailWebtoon';
-// import DetailEpisodeScreen from './src/DetailEpisodeScreen';
+import DetailEpisodeScreen from './src/DetailEpisodeScreen';
 
-import {createAppContainer, createSwitcNavigator} from 'react-navigation';
-import {createStackNavigator} from 'react-navigation-stack';
+import { createAppContainer, createSwitcNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 
-const Login = createStackNavigator ({
+const Login = createStackNavigator({
     LoginScreen: {
         screen: login,
         navigationOptions: () => ({
@@ -25,14 +25,15 @@ const Login = createStackNavigator ({
     ForYouScreen: {
         screen: ForYou,
         navigationOptions: () => ({
-            header : null
+            header: null
         })
     },
     DetailWebtoonScreen: DetailWebtoon,
+    DetailEpisodeScreen: DetailEpisodeScreen,
 },
-{initialRoutineName: 'Login',}
+    { initialRoutineName: 'Login', }
 );
 
 export default createAppContainer(Login);
 
-// export default login;
+// export default DetailWebtoon;
