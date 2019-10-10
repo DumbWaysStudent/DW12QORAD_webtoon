@@ -3,6 +3,7 @@ import { View, StyleSheet, Image, Dimensions, ScrollView} from 'react-native';
 import { Text, Button, Content, Input, Item, Container, Header, Icon, Footer, FooterTab, Row } from 'native-base';
 
 import Carousel from 'react-native-banner-carousel';
+import { TouchableHighlight } from 'react-native-gesture-handler';
 
 const BannerWidth = Dimensions.get('window').width;
 const BannerHeight = 180;
@@ -61,14 +62,17 @@ export default class ForYou extends Component {
                         {this.state.banner.map((image, index) => this.renderPage(image, index))}
                     </Carousel>                   
                     <View>
-                    <Text style={style.favorite}>Favorite Comics</Text>
-                        <ScrollView horizontal= {true} >
+                    <Text style={style.favorite}>Your Favorite Comics</Text>
+                        <ScrollView showsHorizontalScrollIndicator={false} horizontal= {true} >
                             {this.state.banner.map((image) =>  (
                             <View key= {image.picture}>
+                              <TouchableHighlight onPress={() => this.props.navigation.navigate
+                                ('DetailWebtoonScreen', {gambar:image.picture})} >
                                 <Image style={style.imageFavorite}
                                 source= {{ uri: image.picture}}
                                 />
-                                <Text>{image.title} </Text>
+                              </TouchableHighlight>                                
+                                <Text style={style.textFav}>{image.title} </Text>
                             </View>
                             ))}
                         </ScrollView>
@@ -132,16 +136,17 @@ const style = StyleSheet.create ({
     favorite: {
         fontSize: 20,
         marginTop: 5,
-        marginLeft: 20,
+        marginLeft: 15,
         marginBottom: 10
     },
     imageFavorite: {
         height : 150,
         width : 150,
         marginRight: 5,
-        marginLeft: 5,
+        marginLeft: 10,
         borderWidth: 1,
-        borderColor: 'black'
+        borderColor: 'black',
+        borderRadius: 5,
     },
     imageRow: {
         height: 100,
@@ -149,7 +154,8 @@ const style = StyleSheet.create ({
         marginLeft: 10,
         marginBottom: 10,
         borderWidth: 1,
-        borderColor: 'black'
+        borderColor: 'black',
+        borderRadius: 5
     },
     allText: {
         marginLeft : 10,
@@ -164,5 +170,12 @@ const style = StyleSheet.create ({
     titleButton: {
         marginLeft: 10,
         marginTop: 10,
+    },
+    textFav: {
+      marginLeft: 15,
+      marginTop: 10,
+      marginBottom: 10
     }
 })
+
+

@@ -75,7 +75,7 @@ buttonFunction () {
             placeholder='Enter the Password...' /><Icon style={style.eyeIcon} name={this.state.icon} 
             onPress={() => this.changeIcon()}/>
           </Item>
-          <Button success disabled = {this.buttonFunction()} style={style.loginButton} block warning>
+          <Button onPress={() => this.props.navigation.navigate('ForYouScreen')} success disabled = {this.buttonFunction()} style={style.loginButton} block warning>
             <Text>Log In</Text>
           </Button>
         </Content>
