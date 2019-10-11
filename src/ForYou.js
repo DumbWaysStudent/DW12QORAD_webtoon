@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Image, Dimensions, ScrollView} from 'react-native';
+import { View, StyleSheet, Image, Dimensions, ScrollView } from 'react-native';
 import { Text, Button, Content, Input, Item, Container, Header, Icon, Footer, FooterTab, Row } from 'native-base';
 
 import Carousel from 'react-native-banner-carousel';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const BannerWidth = Dimensions.get('window').width;
-const BannerHeight = 180;
+const BannerWidth = 389;
+const BannerHeight = 200;
 
 export default class ForYou extends Component {
-    constructor () {
+    constructor() {
         super();
         this.state = {
             banner: [{
@@ -21,10 +21,10 @@ export default class ForYou extends Component {
             }, {
                 title: 'Si Juki',
                 picture: 'https://www.teknosaurus.com/wp-content/uploads/2017/07/CV-Aplikasi-Baca-Komik-Si-Juki-dan-Mang-Awung.jpg'
-            },  {
+            }, {
                 title: 'Dracko',
                 picture: 'https://i.ytimg.com/vi/w8In94uz_EY/maxresdefault.jpg'
-            },            
+            },
             ]
         }
     }
@@ -32,106 +32,88 @@ export default class ForYou extends Component {
     renderPage(image, index) {
         return (
             <View key={index}>
-                <Image style={{ width: BannerWidth, height: BannerHeight }} 
-                source={{ uri: image.picture }}/>
+                <Image style={{ width: BannerWidth, height: BannerHeight }}
+                    source={{ uri: image.picture }} />
             </View>
         );
     }
 
     render() {
         return (
-        <Container style = {style.container}>
-            <Header style = {style.header} searchBar rounded>
-                <Item>
-                    <Input placeholder=" Search" />
-                    <Icon name="ios-search" />
-                </Item>
-                <Button transparent>
-                    <Text>Search</Text>
-                </Button>
-            </Header>
+            <Container style={style.container}>
+                <Header style={style.header} searchBar rounded>
+                    <Item>
+                        <Input placeholder=" Search" />
+                        <Icon name="ios-search" />
+                    </Item>
+                    <Button transparent>
+                        <Text>Search</Text>
+                    </Button>
+                </Header>
 
-            <Content>
-                <View>
-                    <Carousel
-                        autoplay
-                        autoplayTimeout={4000}
-                        loop
-                        index={0}
-                        pageSize={BannerWidth}>
-                        {this.state.banner.map((image, index) => this.renderPage(image, index))}
-                    </Carousel>                   
+                <Content>
                     <View>
-                    <Text style={style.favorite}>Your Favorite Comics</Text>
-                        <ScrollView showsHorizontalScrollIndicator={false} horizontal= {true} >
-                            {this.state.banner.map((image) =>  (
-                            <View key= {image.picture}>
-                              <TouchableOpacity onPress={() => this.props.navigation.navigate
-                                ('DetailWebtoonScreen', {gambar:image.picture})} >
-                                <Image style={style.imageFavorite}
-                                source= {{ uri: image.picture}}
-                                />
-                              </TouchableOpacity>                                
-                                <Text style={style.textFav}>{image.title} </Text>
-                            </View>
-                            ))}
-                        </ScrollView>
-                    </View> 
-                    <View>
-                        <Text style={style.allText}>All</Text>
-                        {this.state.banner.map((image) => (
-                        <View key={image.picture}>
-                            <Row>
-                                <Image style= {style.imageRow} source= {{ uri: image.picture}}
-                                />
-                                <View>
-                                    <Text style={style.titleFav} >{image.title}</Text>
-                                    <Button warning small style={style.titleButton}>
-                                    <Text style={style.favButton}>+ Favourite</Text>
-                                    </Button> 
-                                </View>
-                            </Row>
+                        <View style={style.imageCarousel}>
+                            <Carousel
+                                autoplay
+                                autoplayTimeout={6000}
+                                loop
+                                index={0}
+                                pageSize={BannerWidth}>
+                                {this.state.banner.map((image, index) => this.renderPage(image, index))}
+                            </Carousel>
                         </View>
-                        ))}
-                    </View>              
-                </View>
-                
-            </Content>
+                        <View>
+                            <Text style={style.favorite}>Your Favorite Comics</Text>
+                            <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} >
+                                {this.state.banner.map((image) => (
+                                    <View key={image.picture}>
+                                        <TouchableOpacity onPress={() => this.props.navigation.navigate
+                                            ('DetailWebtoonScreen', { gambar: image.picture })} >
+                                            <Image style={style.imageFavorite}
+                                                source={{ uri: image.picture }}
+                                            />
+                                        </TouchableOpacity>
+                                        <Text style={style.textFav}>{image.title} </Text>
+                                    </View>
+                                ))}
+                            </ScrollView>
+                        </View>
+                        <View>
+                            <Text style={style.allText}>All</Text>
+                            {this.state.banner.map((image) => (
+                                <View key={image.picture}>
+                                    <Row>
+                                        <Image style={style.imageRow} source={{ uri: image.picture }}
+                                        />
+                                        <View>
+                                            <Text style={style.titleFav} >{image.title}</Text>
+                                            <Button success small style={style.titleButton}>
+                                                <Text style={style.favButton}>+ Favourite</Text>
+                                            </Button>
+                                        </View>
+                                    </Row>
+                                </View>
+                            ))}
+                        </View>
+                    </View>
 
-            <Footer style = {style.footer}>
-            <FooterTab style = {style.footerTab}>
-                <Button vertical>
-                <Icon name="apps" />
-                <Text>For You</Text>
-                </Button>
-                <Button vertical>
-                <Icon name="star" />
-                <Text>Favorite</Text>
-                </Button>
-                <Button vertical>
-                <Icon name="person" />
-                <Text>Profile</Text>
-                </Button>
-            </FooterTab>
-            </Footer>
-        </Container>
+                </Content>
+            </Container>
         );
     }
 }
 
-const style = StyleSheet.create ({
+const style = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fafafa'
     },
     header: {
-        backgroundColor: 'green'
+        backgroundColor: '#32cd32'
     },
     footer: {
-        
-    },
-    footerTab: {
-        backgroundColor: 'green'
+
     },
     favorite: {
         fontSize: 20,
@@ -140,12 +122,12 @@ const style = StyleSheet.create ({
         marginBottom: 10
     },
     imageFavorite: {
-        height : 150,
-        width : 150,
+        height: 150,
+        width: 150,
         marginRight: 5,
         marginLeft: 10,
         borderWidth: 1,
-        borderColor: 'black',
+        borderColor: 'silver',
         borderRadius: 5,
     },
     imageRow: {
@@ -154,11 +136,11 @@ const style = StyleSheet.create ({
         marginLeft: 10,
         marginBottom: 10,
         borderWidth: 1,
-        borderColor: 'black',
+        borderColor: 'silver',
         borderRadius: 5
     },
     allText: {
-        marginLeft : 10,
+        marginLeft: 10,
         marginTop: 5,
         marginBottom: 5,
         fontSize: 20
@@ -172,10 +154,18 @@ const style = StyleSheet.create ({
         marginTop: 10,
     },
     textFav: {
-      marginLeft: 15,
-      marginTop: 10,
-      marginBottom: 10
-    }
+        marginLeft: 15,
+        marginTop: 10,
+        marginBottom: 10
+    },
+    imageCarousel: {
+        borderWidth: 1,
+        borderColor: 'silver',
+        marginTop: 10,
+        marginRight: 10,
+        marginLeft: 10,
+    },
+
 })
 
 
