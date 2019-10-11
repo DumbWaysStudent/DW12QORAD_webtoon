@@ -1,2 +1,4 @@
-<h2 align="center" >Capture My Favorite</h2>
-<img src="./5.Favorite.jpg" width="250" align="center">
+<h2 align="center" >Capture Profile</h2>
+<p align="center">
+<img src="./6.Profile.jpg" width="250" align="center">
+</p>
